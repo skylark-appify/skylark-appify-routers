@@ -1,5 +1,5 @@
 # skylark-router
-An Elegant HTML5 Routing Framework.
+An Elaborate HTML5 Routing Framework.
 
 ## Installation
 There are multiple ways to install the skylark-uitls library. 
