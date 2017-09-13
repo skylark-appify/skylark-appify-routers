@@ -70,10 +70,10 @@ add callback function for route.
 
 When the route is changed, the following event are triggered in order.
 
-1.exiting (for previous route)
-2.entering (for new route)
-3.entered (for new route)
-4.exited (for previous route)
+1. exiting (for previous route) 
+2. entering (for new route) 
+3. entered (for new route) 
+4. exited (for previous route) 
 
 In adding route at the same time, you can add the same name of the callback function, after the route is added,you can also add callback function for these events.
 
@@ -116,9 +116,9 @@ router.on("routed",function(e){
 
 The router support the following three routing engines.
 
-1.html5 history API egine
-2.hash egine
-3.internal management engine
+1. html5 history API egine 
+2. hash egine 
+3. internal management engine 
 
 The useHistoryApi attribute and useHashbang attribute of router object are used to control which engine is used：
 
