@@ -132,7 +132,7 @@ The hash egine is used.
 The internal management engine is used.
 
 ## API Document
-skyalrk.js application framwork contains the above modules, so the module API documentation can refer to sklark.js's guilde
+skyalrk.js application framwork contains the router module, so the module API documentation can refer to sklark.js's api doc
 
 - http://www.skylarkjs.org/api
 
