@@ -1,15 +1,35 @@
 # skylark-router
 An Elaborate HTML5 Routing Framework.
 
+## Features
+
+- Support Hashbang, HTML5 pushstate, internal implementation three routing mode, the routing mode can be set by attributes or automatically by  the framework, without affecting the implementation of the application.
+- Supports global events to implement hooker functions.
+- Lightweight, even if allinone is only 13k(minified),5k(gzip)
+
+## Dependences
+| Project | Status | Description |
+|---------|--------|-------------|
+| [skylark-langx](https://github.com/skylarkjs/skylark-langx)   | v0.9.0 | Javascript language extension library |
+
+##  Different builds
+|  | build | Description |
+|---------|--------|-------------|
+| full | skylark-router-all.js | included skylark-langx |
+| only router | skylark-router.js | not included skylark-langx |
+| full （development） | uncompressed/skylark-router-all.js | included skylark-langx |
+| only router （development）| uncompressed/skylark-router.js | not included skylark-langx |
+
+
 ## Installation
-There are multiple ways to install the skylark-uitls library. 
+There are multiple ways to install the skylark-router library. 
+- cdn 
+http://registry.skylarkjs.org/packages/skylark-router/v0.9.0/skylark-router.js    or  
+http://registry.skylarkjs.org/packages/skylark-router/v0.9.0/uncompressed/skylark-router.js 
 - npm  
 npm install skylark-router --save
 - bower  
 bower install skylark-router
-- cdn  
-http://registry.skylarkjs.org/packages/skylark-router/v0.9.0/skylark-router.js    or  
-http://registry.skylarkjs.org/packages/skylark-router/v0.9.0/uncompressed/skylark-router.js 
 
 ## Usage
 
@@ -141,6 +161,15 @@ Please access the following site for the execution of each example program under
 
 - http://www.skylarkjs.org/examples
 - http://examples.skylarkjs.org/skylark-router/
+
+
+## Building skylark-router
+
+- Ensure that Node.js is installed.
+- Run npm gulp -g to ensure gulp is installed.
+- Run npm install to ensure the required dependencies are installed.
+- change current directory to build/, and run gulp. The builds will be placed in the dist/ directory.
+
 
 ## License
 
