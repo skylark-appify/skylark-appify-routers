@@ -24,8 +24,8 @@ An Elaborate HTML5 Routing Framework.
 ## Installation
 There are multiple ways to install the skylark-router library. 
 - cdn 
-http://registry.skylarkjs.org/packages/skylark-router/v0.9.0/skylark-router.js    or  
-http://registry.skylarkjs.org/packages/skylark-router/v0.9.0/uncompressed/skylark-router.js 
+http://registry.skylarkjs.org/packages/skylark-router/v0.9.1/skylark-router.js    or  
+http://registry.skylarkjs.org/packages/skylark-router/v0.9.1/uncompressed/skylark-router.js 
 - npm  
 npm install skylark-router --save
 - bower  
