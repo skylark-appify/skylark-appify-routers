@@ -1,6 +1,8 @@
 require('./gulp')([
     'default',
     'clean',
+    'script',
     'minify',
-    'script'
+    'script-all',
+    'minify-all',
 ]);

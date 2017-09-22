@@ -23,8 +23,8 @@ var requireConfig = {
     baseUrl: util.src,
     out : util.pkg.name + ".js",
     packages : [{
-       name : "skylark-utils" ,
-       location :  util.lib+"skylark-utils-v0.9.0/uncompressed/skylark-utils"
+       name : "skylark-langx" ,
+       location :  util.lib+"skylark-langx-v0.9.0/uncompressed/skylark-langx"
    },
     {
        name : util.pkg.name ,
@@ -39,7 +39,7 @@ var requireConfig = {
         util.pkg.name + "/router"
     ],
     exclude: [
-        "skylark-utils"
+        "skylark-langx"
     ]
 };
 

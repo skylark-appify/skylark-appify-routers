@@ -36,13 +36,9 @@
 })(function(define,require) {
 
 define('skylark-router/router',[
-    "skylark-utils/skylark",
-    "skylark-utils/langx",
-    "skylark-utils/browser",
-    "skylark-utils/datax",
-    "skylark-utils/eventer",
-    "skylark-utils/async"
-], function(skylark, langx, browser, datax, eventer,async) {
+    "skylark-langx/skylark",
+    "skylark-langx/langx"
+], function(skylark, langx) {
 
     var _curCtx,
         _prevCtx,
@@ -51,6 +47,11 @@ define('skylark-router/router',[
         _routes = {},
         _cache = {},
         _hub = new langx.Evented();
+
+    function createEvent(type,props) {
+        var e = new CustomEvent(type,props);
+        return langx.safeMixin(e, props);
+    }
 
     var Route = langx.Evented.inherit({
         klassName: "Route",
@@ -90,24 +91,25 @@ define('skylark-router/router',[
 
         enter: function(ctx,query) {
             if (query) {
-                var r = this._entering(ctx);
+                var r = this._entering(ctx),
+                    self = this;
 
-                return async.Deferred.when(r).then(function(){
-                    var e = eventer.create("entering", {
-                        route: this,
+                return langx.Deferred.when(r).then(function(){
+                    var e = createEvent("entering", {
+                        route: self,
                         result: true
                     });
 
-                    eventer.trigger(this, e);
+                    self.trigger(e);
 
                     return e.result;
                 });
             } else {
                 this._entered(ctx);
 
-                eventer.trigger(this, "entered", langx.safeMixin({
+                this.trigger(createEvent("entered", langx.safeMixin({
                     route: this
-                }, ctx));
+                }, ctx)));
                 return this;
             }
         },
@@ -119,19 +121,19 @@ define('skylark-router/router',[
                     return false;
                 }
 
-                var e = eventer.create("exiting", {
+                var e = createEvent("exiting", {
                     route: this,
                     result: true
                 });
 
-                eventer.trigger(this, e);
+                this.trigger(e);
 
                 return e.result;
             } else {
                 this._exited(ctx);
-                eventer.trigger(this, "exited", langx.safeMixin({
+                this.trigger(createEvent("exited", langx.safeMixin({
                     route: this
-                }, ctx));
+                }, ctx)));
 
                 return this;
             }
@@ -211,11 +213,11 @@ define('skylark-router/router',[
             params: _curCtx.params
         },true);
 
-        async.Deferred.when(r).then(function() {
-            eventer.trigger(_hub, "routing", {
+        langx.Deferred.when(r).then(function() {
+            _hub.trigger(createEvent("routing", {
                 current: _curCtx,
                 previous: _prevCtx
-            });
+            }));
 
             _curCtx.route.enter({
                 path: _curCtx.path,
@@ -229,10 +231,10 @@ define('skylark-router/router',[
                 }, false);
             }
 
-            eventer.trigger(_hub, "routed", {
+            _hub.trigger(createEvent("routed", {
                 current: _curCtx,
                 previous: _prevCtx
-            });
+            }));
         });
     }
 
@@ -250,7 +252,7 @@ define('skylark-router/router',[
                 }
 
                 window.history.pushState(state, document.title, (_baseUrl + path).replace("//", "/"));
-                eventer.trigger(window, eventer.create("popstate", {
+                window.dispatchEvent(createEvent("popstate", {
                     state: state
                 }));
             } else if (router.useHashbang) {
@@ -374,9 +376,10 @@ define('skylark-router/router',[
             initPath = "/";
         }
 
+        /*
         eventer.on(document.body, "click", "a[href]", function(e) {
             var elm = e.currentTarget,
-                url = datax.attr(elm, "href");
+                url = elm.getAttribute("href");
 
             if (url == "#") {
                 return;
@@ -389,19 +392,19 @@ define('skylark-router/router',[
                     go(url);
                 }
             }
-
         });
+        */
         if (router.useHistoryApi) {
-            eventer.on(window, "popstate", function(e) {
+            window.addEventListener("popstate", function(e) {
                 if(e.state) dispatch(e.state);
-                eventer.stop(e);
+                e.preventDefault();
             });
         } else if (router.useHashbang) {
-            eventer.on(window, "hashchange", function(e) {
+            window.addEventListener("hashchange", function(e) {
                 dispatch({
                     path: window.location.hash.replace(/^#!/, "")
                 });
-                eventer.stop(e);
+                e.preventDefault();
             });
         }
 
@@ -454,7 +457,7 @@ define('skylark-router/router',[
         "start": start,
 
         "trigger": function(type, props) {
-            eventer.trigger(_hub, type, props);
+            _hub.trigger(createEvent(type, props));
             return this;
         },
 
