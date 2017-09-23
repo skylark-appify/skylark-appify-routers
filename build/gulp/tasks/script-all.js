@@ -25,15 +25,10 @@ var requireConfig = {
     },
     {
        name : util.pkg.name ,
-       location :  util.src,
-       main : "core"
-
+       location :  util.src
     }],
-    paths: {
-    },
-
     include: [
-        util.pkg.name + "/router"
+        util.pkg.name + "/main"
     ],
     exclude: [
     ]

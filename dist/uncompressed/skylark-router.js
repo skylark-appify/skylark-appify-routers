@@ -1,7 +1,7 @@
 /**
  * skylark-router - An Elegant HTML5 Routing Framework.
  * @author Hudaokeji Co.,Ltd
- * @version v0.9.1
+ * @version v0.9.2
  * @link www.skylarkjs.org
  * @license MIT
  */
@@ -11,25 +11,68 @@
   	  isAmd = (typeof define === 'function' && define.amd),
   	  isCmd = (!isAmd && typeof exports !== 'undefined');
 
+  if (!isAmd && !define) {
+    var map = {};
+    function absolute(relative, base) {
+        if (relative[0]!==".") {
+          return relative;
+        }
+        var stack = base.split("/"),
+            parts = relative.split("/");
+        stack.pop(); 
+        for (var i=0; i<parts.length; i++) {
+            if (parts[i] == ".")
+                continue;
+            if (parts[i] == "..")
+                stack.pop();
+            else
+                stack.push(parts[i]);
+        }
+        return stack.join("/");
+    }
+    define = globals.define = function(id, deps, factory) {
+        if (typeof factory == 'function') {
+            map[id] = {
+                factory: factory,
+                deps: deps.map(function(dep){
+                  return absolute(dep,id);
+                }),
+                exports: null
+            };
+            require(id);
+        } else {
+            resolved[id] = factory;
+        }
+    };
+    require = globals.require = function(id) {
+        if (!map.hasOwnProperty(id)) {
+            throw new Error('Module ' + id + ' has not been defined');
+        }
+        var module = map[id];
+        if (!module.exports) {
+            var args = [];
+
+            module.deps.forEach(function(dep){
+                args.push(require(dep));
+            })
+
+            module.exports = module.factory.apply(window, args);
+        }
+        return module.exports;
+    };
+  }
+  
   if (!define) {
      throw new Error("The module utility (ex: requirejs or skylark-utils) is not loaded!");
   }
 
   factory(define,require);
 
-  if (isAmd) {
-    define([
-      "skylark-router",
-    ],function(router){
-      return router;
-    });
-  } else {    
-	  var router = require("skylark-router");
-
+  if (!isAmd) {
   	if (isCmd) {
-  		exports = router;
+  		exports = require("skylark-router/router");
     } else {
-    	globals.skylarkjs.router = router;
+    	globals.skylarkjs = require("skylark-router/main");
     }
   }
 
@@ -468,7 +511,14 @@ define('skylark-router/router',[
     return skylark.router = router;
 });
 
-define('skylark-router', ['skylark-router/router'], function (main) { return main; });
+define('skylark-router/main',[
+    "skylark-langx/skylark",
+    "./router"
+], function(skylark) {
+    return skylark;
+});
+
+define('skylark-router', ['skylark-router/main'], function (main) { return main; });
 
 
 },this);

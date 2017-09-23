@@ -2,33 +2,13 @@ require.config({
   baseUrl: "./"
   ,paths : {
      "skylark-langx" : "http://registry.skylarkjs.org/packages/skylark-langx/v0.9.0/uncompressed/skylark-langx" ,
-     "skylark-utils" : "http://registry.skylarkjs.org/packages/skylark-utils/v0.9.0/uncompressed/skylark-utils" ,
+     "skylark-utils" : "http://registry.skylarkjs.org/packages/skylark-utils/v0.9.2/uncompressed/skylark-utils" ,
      "skylark-router" : "../../dist/uncompressed/skylark-router" ,
   }
 });
  
-require(["skylark-utils","skylark-router"], function (skylark,router) {
+require(["skylark-utils","skylark-router/router"], function (skylark,router) {
     var $ = skylark.query;
-/*
-    Router.autoRun = true;
-
-    Router.on('route', function () {
-        console.log('go to ' + this.path);
-    });
-
-    Router.on('beforeRender', function () {
-        console.log('before ' + this.path);
-    });
-
-    Router.on('afterRender', function () {
-        console.log('after ' + this.path);
-    });
-
-    // Declare not found route
-    Router.notFound = function () {
-        this.render($('#not-found').html());
-    };
-*/
     // Declare root route
     router.route('home', {
     	pathto : '/',
