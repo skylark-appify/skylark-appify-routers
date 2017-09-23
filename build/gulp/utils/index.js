@@ -15,7 +15,7 @@ var banner = ['/**',
 module.exports = {
     src: '../src/',
     dest: '../dist/',
-    lib: '../lib/',
+    lib_langx: '../node_modules/skylark-langx/dist/',
     banner: banner,
     allinoneHeader : './scripts/allinone-js.header',
     allinoneFooter : './scripts/allinone-js.footer',

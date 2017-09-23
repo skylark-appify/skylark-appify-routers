@@ -1,7 +1,7 @@
 require.config({
   baseUrl: "./"
   ,paths : {
-     "skylark-langx" : "../../lib/skylark-langx-v0.9.0/uncompressed/skylark-langx" ,
+     "skylark-langx" : "http://registry.skylarkjs.org/packages/skylark-langx/v0.9.0/uncompressed/skylark-langx" ,
      "skylark-utils" : "http://registry.skylarkjs.org/packages/skylark-utils/v0.9.0/uncompressed/skylark-utils" ,
      "skylark-router" : "../../dist/uncompressed/skylark-router" ,
   }

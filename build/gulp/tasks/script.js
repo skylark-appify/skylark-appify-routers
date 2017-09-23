@@ -21,7 +21,7 @@ var requireConfig = {
     out : util.pkg.name + ".js",
     packages : [{
        name : "skylark-langx" ,
-       location :  util.lib+"skylark-langx-v0.9.0/uncompressed/skylark-langx"
+       location :  util.lib_langx+"/uncompressed/skylark-langx"
    },
     {
        name : util.pkg.name ,
