@@ -10,7 +10,7 @@ An Elaborate HTML5 Routing Framework.
 ## Dependences
 | Project | Status | Description |
 |---------|--------|-------------|
-| [skylark-langx](https://github.com/skylarkjs/skylark-langx)   | v0.9.0 | Javascript language extension library |
+| [skylark-langx](https://github.com/skylarkjs/skylark-langx)   | v0.9.1 | Javascript language extension library |
 
 ##  Different builds
 |  | build | Description |
@@ -24,8 +24,8 @@ An Elaborate HTML5 Routing Framework.
 ## Installation
 There are multiple ways to install the skylark-router library. 
 - cdn 
-http://registry.skylarkjs.org/packages/skylark-router/v0.9.1/skylark-router.js    or  
-http://registry.skylarkjs.org/packages/skylark-router/v0.9.1/uncompressed/skylark-router.js 
+http://registry.skylarkjs.org/packages/skylark-router/v0.9.2/skylark-router-all.js    or  
+http://registry.skylarkjs.org/packages/skylark-router/v0.9.2/uncompressed/skylark-router-all.js 
 - npm  
 npm install skylark-router --save
 - bower  
@@ -40,19 +40,19 @@ Refence router module object.
 ```js
 require({
   'paths': {
-     'skylark-utils': 'http://registry.skylarkjs.org/packages/skylark-utils/v0.9.0/skylark-utils',
-     'skylark-router': 'http://registry.skylarkjs.org/packages/skylark-router/v0.9.0/skylark-router' 
+     'skylark-langx': 'http://registry.skylarkjs.org/packages/skylark-langx/v0.9.1/skylark-langx',
+     'skylark-router': 'http://registry.skylarkjs.org/packages/skylark-router/v0.9.2/skylark-router' 
   }
 }, ['skylark-router'], function(srouter) {
   // srouter.route(path,setting);
 });
 ```
 
-- Using the skylark-router library for a global object named skylark.  
+- Using the skylark-router library for a global object named skylarkjs.  
 ```js
-<script type="text/javascript" src="http://registry.skylarkjs.org/packages/skylark-router/v0.9.0/skylark-router.js"></script>
+<script type="text/javascript" src="http://registry.skylarkjs.org/packages/skylark-router/v0.9.2/skylark-router-all.js"></script>
 <script>
-  // skylark.router.route(path,setting);
+  // skylarkjs.router.route(path,setting);
 </script>
 ```
 
@@ -60,10 +60,10 @@ require({
 ```js
 require({
   'packages': [
-    { 'name': 'skylark-router', 'location': 'http://registry.skylarkjs.org/packages/skylark-router/v0.9.0/skylark-router/' },
-    { 'name': 'skylark-router', 'location': 'http://registry.skylarkjs.org/packages/skylark-router/v0.9.0/skylark-router/' }
+    { 'name': 'skylark-langx', 'location': 'http://registry.skylarkjs.org/packages/skylark-langx/v0.9.1/skylark-langx/' },
+    { 'name': 'skylark-router', 'location': 'http://registry.skylarkjs.org/packages/skylark-router/v0.9.2/skylark-router/' }
   ]
-}, ['skylark-router/mover'], function(srouter) {
+}, ['skylark-router/router'], function(srouter) {
   // srouter.route(path,setting);
 });
 ```
