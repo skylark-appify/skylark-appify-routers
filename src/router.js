@@ -419,8 +419,8 @@ define([
         //starts routing urls
         "start": start,
 
-        "trigger": function(type, props) {
-            _hub.trigger(createEvent(type, props));
+        "trigger": function(e) {
+            _hub.trigger(e);
             return this;
         },
 
