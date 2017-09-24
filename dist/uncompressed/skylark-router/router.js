@@ -332,7 +332,7 @@ define([
             }
         }
 
-        var initPath;
+        var initPath = "";
 
         if (router.useHistoryApi) {
             initPath = window.location.pathname;
@@ -346,6 +346,9 @@ define([
             initPath = "/";
         }
 
+        if (!initPath.startsWith("/")) {
+            initPath = "/" + initPath;
+        }
         /*
         eventer.on(document.body, "click", "a[href]", function(e) {
             var elm = e.currentTarget,

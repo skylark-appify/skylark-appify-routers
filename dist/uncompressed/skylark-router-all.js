@@ -1348,7 +1348,7 @@ define('skylark-router/router',[
             }
         }
 
-        var initPath;
+        var initPath = "";
 
         if (router.useHistoryApi) {
             initPath = window.location.pathname;
@@ -1362,6 +1362,9 @@ define('skylark-router/router',[
             initPath = "/";
         }
 
+        if (!initPath.startsWith("/")) {
+            initPath = "/" + initPath;
+        }
         /*
         eventer.on(document.body, "click", "a[href]", function(e) {
             var elm = e.currentTarget,
