@@ -1,5 +1,5 @@
 # skylark-router
-An Elaborate HTML5 Routing Framework.
+An elaborate front-end routing framework.
 
 ## Features
 
@@ -152,15 +152,27 @@ The hash egine is used.
 The internal management engine is used.
 
 ## API Document
-skyalrk.js application framwork contains the router module, so the module API documentation can refer to sklark.js's api doc
-
-- http://www.skylarkjs.org/api
+- baseUrl()
+- current()
+- go()
+- map()
+- off()
+- on()
+- one()
+- path()
+- previous()
+- Route
+  * Route.prototype.match
+  * Route.prototype.path
+- route()
+- routes()
+- start()
+- trigger()
 
 ## Examples
 Please access the following site for the execution of each example program under the "/examples" directory.
 
 - http://www.skylarkjs.org/examples
-- http://examples.skylarkjs.org/skylark-router/
 
 
 ## Building skylark-router
@@ -170,6 +182,8 @@ Please access the following site for the execution of each example program under
 - Run npm install to ensure the required dependencies are installed.
 - change current directory to build/, and run gulp. The builds will be placed in the dist/ directory.
 
+## Integration
+This library is completely built-in on [skylark-spa](https://github.com/skylarkjs/skylark-spa), and when you use [skylark-spa](https://github.com/skylarkjs/skylark-spa) or [skylark.js](https://github.com/skylarkjs/skylark) to develop an application, you do not have to use this library's API directly
 
 ## License
 
