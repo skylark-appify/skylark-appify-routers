@@ -172,7 +172,7 @@ The internal management engine is used.
 ## Examples
 Please access the following site for the execution of each example program under the "/examples" directory.
 
-- http://www.skylarkjs.org/examples
+- http://examples.skylarkjs.org/skylark-router/
 
 
 ## Building skylark-router
