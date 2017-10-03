@@ -23,7 +23,7 @@ An elaborate front-end routing framework.
 
 ## Installation
 There are multiple ways to install the skylark-router library. 
-- cdn 
+- cdn  
 http://registry.skylarkjs.org/packages/skylark-router/v0.9.2/skylark-router-all.js    or  
 http://registry.skylarkjs.org/packages/skylark-router/v0.9.2/uncompressed/skylark-router-all.js 
 - npm  
