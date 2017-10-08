@@ -25,12 +25,15 @@ require(["skylark-utils","skylark-router/router"], function (skylark,router) {
         entered(e){
     		$("#yield").html($('#page' + e.params.id).html());
     	},
-    	exited() {
+    	exiting(e) {
             var field = $('[name="field"]').val();
             if (field) {
-                return confirm('Are you sure you want to quit this page ?');
-            }    		
-    	}
+                var ret = confirm('Are you sure you want to quit this chapter ?');
+                if (!ret) {
+                    e.result = false;
+                }
+            }  
+        } 
     });
   
 
