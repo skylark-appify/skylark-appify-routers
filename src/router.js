@@ -318,7 +318,7 @@ define([
     //starts routing urls
     function start() {
         if (router.useHashbang == null && router.useHistoryApi == null) {
-            if (window.location.host) {
+            if (window.location.host  && window.history.pushState) {
                 //web access
                 router.useHistoryApi = true;
             } else {

@@ -1,6 +1,6 @@
 {
   "name": "skylark-router",
-  "version": "0.9.2",
+  "version": "0.9.3-beta",
   "description": "An Elegant HTML5 Routing Framework.",
   "main": "-",
   "scripts": {
