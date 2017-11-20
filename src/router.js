@@ -172,6 +172,7 @@ define([
         }
 
         var r = _curCtx.route.enter({
+            force: _curCtx.force,
             path: _curCtx.path,
             params: _curCtx.params
         },true);
@@ -211,6 +212,7 @@ define([
 
             if (router.useHistoryApi) {
                 var state = {
+                    force: force,
                     path: path
                 }
 
