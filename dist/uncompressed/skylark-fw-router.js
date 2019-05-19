@@ -1,5 +1,5 @@
 /**
- * skylark-router - An Elegant HTML5 Routing Framework.
+ * skylark-fw-router - An Elegant HTML5 Routing Framework.
  * @author Hudaokeji Co.,Ltd
  * @version v0.9.6-beta
  * @link www.skylarkjs.org
@@ -7,9 +7,9 @@
  */
 (function(factory,globals) {
   var define = globals.define,
-  	  require = globals.require,
-  	  isAmd = (typeof define === 'function' && define.amd),
-  	  isCmd = (!isAmd && typeof exports !== 'undefined');
+      require = globals.require,
+      isAmd = (typeof define === 'function' && define.amd),
+      isCmd = (!isAmd && typeof exports !== 'undefined');
 
   if (!isAmd && !define) {
     var map = {};
@@ -37,11 +37,16 @@
                 deps: deps.map(function(dep){
                   return absolute(dep,id);
                 }),
+                resolved: false,
                 exports: null
             };
             require(id);
         } else {
-            map[id] = factory;
+            map[id] = {
+                factory : null,
+                resolved : true,
+                exports : factory
+            };
         }
     };
     require = globals.require = function(id) {
@@ -49,14 +54,15 @@
             throw new Error('Module ' + id + ' has not been defined');
         }
         var module = map[id];
-        if (!module.exports) {
+        if (!module.resolved) {
             var args = [];
 
             module.deps.forEach(function(dep){
                 args.push(require(dep));
             })
 
-            module.exports = module.factory.apply(window, args);
+            module.exports = module.factory.apply(globals, args) || null;
+            module.resolved = true;
         }
         return module.exports;
     };
@@ -69,16 +75,18 @@
   factory(define,require);
 
   if (!isAmd) {
-  	if (isCmd) {
-  		exports = require("skylark-router/router");
+    var skylarkjs = require("skylark-langx/skylark");
+
+    if (isCmd) {
+      module.exports = skylarkjs;
     } else {
-    	globals.skylarkjs = require("skylark-router/main");
+      globals.skylarkjs  = skylarkjs;
     }
   }
 
 })(function(define,require) {
 
-define('skylark-router/router',[
+define('skylark-fw-router/router',[
     "skylark-langx/skylark",
     "skylark-langx/langx"
 ], function(skylark, langx) {
@@ -516,14 +524,15 @@ define('skylark-router/router',[
     return skylark.router = router;
 });
 
-define('skylark-router/main',[
+define('skylark-fw-router/main',[
     "skylark-langx/skylark",
     "./router"
 ], function(skylark) {
     return skylark;
 });
 
-define('skylark-router', ['skylark-router/main'], function (main) { return main; });
+define('skylark-fw-router', ['skylark-fw-router/main'], function (main) { return main; });
 
 
 },this);
+//# sourceMappingURL=sourcemaps/skylark-fw-router.js.map
