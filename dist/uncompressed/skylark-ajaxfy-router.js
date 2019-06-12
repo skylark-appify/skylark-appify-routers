@@ -1,5 +1,5 @@
 /**
- * skylark-fw-router - An Elegant HTML5 Routing Framework.
+ * skylark-ajaxfy-router - An Elegant HTML5 Routing Framework.
  * @author Hudaokeji Co.,Ltd
  * @version v0.9.6-beta
  * @link www.skylarkjs.org
@@ -86,24 +86,17 @@
 
 })(function(define,require) {
 
-define('skylark-fw-router/router',[
-    "skylark-langx/skylark",
-    "skylark-langx/langx"
-], function(skylark, langx) {
+define('skylark-ajaxfy-router/routing',[
+	"skylark-langx/skylark"
+],function(skylark){
 
-    var _curCtx,
-        _prevCtx,
-        _baseUrl,
-        _homePath,
-        _routes = {},
-        _cache = {},
-        _hub = new langx.Evented();
+	return skylark.attach("fw.routing",{});	
+});
 
-    function createEvent(type,props) {
-        var e = new CustomEvent(type,props);
-        return langx.safeMixin(e, props);
-    }
-
+define('skylark-ajaxfy-router/Route',[
+	"skylark-langx/langx",
+	"./routing"
+],function(langx,routing){
     var Route = langx.Evented.inherit({
         klassName: "Route",
         init: function(name, setting) {
@@ -233,6 +226,27 @@ define('skylark-fw-router/router',[
             return true;
         },
     });
+
+	return routing.Route = Route;	
+});
+define('skylark-ajaxfy-router/router',[
+    "skylark-langx/langx",
+    "./routing",
+    "./Route"
+],function(langx,routing,Route){
+    var _curCtx,
+        _prevCtx,
+        _baseUrl,
+        _homePath,
+        _routes = {},
+        _cache = {},
+        _hub = new langx.Evented();
+
+    function createEvent(type,props) {
+        var e = new CustomEvent(type,props);
+        return langx.safeMixin(e, props);
+    }
+
 
     function current() {
         return _curCtx;
@@ -524,15 +538,15 @@ define('skylark-fw-router/router',[
     return skylark.router = router;
 });
 
-define('skylark-fw-router/main',[
+define('skylark-ajaxfy-router/main',[
     "skylark-langx/skylark",
     "./router"
 ], function(skylark) {
     return skylark;
 });
 
-define('skylark-fw-router', ['skylark-fw-router/main'], function (main) { return main; });
+define('skylark-ajaxfy-router', ['skylark-ajaxfy-router/main'], function (main) { return main; });
 
 
 },this);
-//# sourceMappingURL=sourcemaps/skylark-fw-router.js.map
+//# sourceMappingURL=sourcemaps/skylark-ajaxfy-router.js.map

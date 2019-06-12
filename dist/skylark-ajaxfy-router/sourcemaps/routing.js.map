@@ -1,0 +1,1 @@
+{"version":3,"sources":["routing.js"],"names":["define","skylark","attach"],"mappings":";;;;;;;AAAAA,QACC,yBACC,SAASC,GAEV,OAAOA,EAAQC,OAAO","file":"../routing.js","sourcesContent":["define([\r\n\t\"skylark-langx/skylark\"\r\n],function(skylark){\r\n\r\n\treturn skylark.attach(\"fw.routing\",{});\t\r\n});\r\n"]}
