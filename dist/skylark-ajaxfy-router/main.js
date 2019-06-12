@@ -5,5 +5,5 @@
  * @link www.skylarkjs.org
  * @license MIT
  */
-define(["skylark-langx/skylark","./router"],function(r){return r});
+define(["./routers"],function(e){return e});
 //# sourceMappingURL=sourcemaps/main.js.map

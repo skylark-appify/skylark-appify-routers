@@ -1,7 +1,7 @@
 define([
 	"skylark-langx/langx",
-	"./routing"
-],function(langx,routing){
+	"./routers"
+],function(langx,routers){
     var Route = langx.Evented.inherit({
         klassName: "Route",
         init: function(name, setting) {
@@ -132,5 +132,5 @@ define([
         },
     });
 
-	return routing.Route = Route;	
+	return routers.Route = Route;	
 })

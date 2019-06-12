@@ -1,6 +1,5 @@
 define([
-    "skylark-langx/skylark",
-    "./router"
-], function(skylark) {
-    return skylark;
+    "./routers"
+], function(routers) {
+    return routers;
 });

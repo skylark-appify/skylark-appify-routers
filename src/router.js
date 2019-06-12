@@ -1,8 +1,8 @@
 define([
     "skylark-langx/langx",
-    "./routing",
+    "./routers",
     "./Route"
-],function(langx,routing,Route){
+],function(langx,routers,Route){
     var _curCtx,
         _prevCtx,
         _baseUrl,
