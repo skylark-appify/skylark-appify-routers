@@ -1,5 +1,7 @@
 define([
-    "./routers"
+    "./routers",
+    "./Router",
+    "./Route"
 ], function(routers) {
     return routers;
 });

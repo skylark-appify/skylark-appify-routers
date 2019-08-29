@@ -2,6 +2,8 @@ define([
 	"skylark-langx/langx",
 	"./routers"
 ],function(langx,routers){
+    var createEvent = routers.createEvent;
+    
     var Route = langx.Evented.inherit({
         klassName: "Route",
         init: function(name, setting) {

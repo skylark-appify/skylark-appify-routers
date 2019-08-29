@@ -1,4 +1,244 @@
-define([
+/**
+ * skylark-ajaxfy-routers - An Elegant HTML5 Routing Framework.
+ * @author Hudaokeji Co.,Ltd
+ * @version v0.9.6-beta
+ * @link www.skylarkjs.org
+ * @license MIT
+ */
+(function(factory,globals) {
+  var define = globals.define,
+      require = globals.require,
+      isAmd = (typeof define === 'function' && define.amd),
+      isCmd = (!isAmd && typeof exports !== 'undefined');
+
+  if (!isAmd && !define) {
+    var map = {};
+    function absolute(relative, base) {
+        if (relative[0]!==".") {
+          return relative;
+        }
+        var stack = base.split("/"),
+            parts = relative.split("/");
+        stack.pop(); 
+        for (var i=0; i<parts.length; i++) {
+            if (parts[i] == ".")
+                continue;
+            if (parts[i] == "..")
+                stack.pop();
+            else
+                stack.push(parts[i]);
+        }
+        return stack.join("/");
+    }
+    define = globals.define = function(id, deps, factory) {
+        if (typeof factory == 'function') {
+            map[id] = {
+                factory: factory,
+                deps: deps.map(function(dep){
+                  return absolute(dep,id);
+                }),
+                resolved: false,
+                exports: null
+            };
+            require(id);
+        } else {
+            map[id] = {
+                factory : null,
+                resolved : true,
+                exports : factory
+            };
+        }
+    };
+    require = globals.require = function(id) {
+        if (!map.hasOwnProperty(id)) {
+            throw new Error('Module ' + id + ' has not been defined');
+        }
+        var module = map[id];
+        if (!module.resolved) {
+            var args = [];
+
+            module.deps.forEach(function(dep){
+                args.push(require(dep));
+            })
+
+            module.exports = module.factory.apply(globals, args) || null;
+            module.resolved = true;
+        }
+        return module.exports;
+    };
+  }
+  
+  if (!define) {
+     throw new Error("The module utility (ex: requirejs or skylark-utils) is not loaded!");
+  }
+
+  factory(define,require);
+
+  if (!isAmd) {
+    var skylarkjs = require("skylark-langx/skylark");
+
+    if (isCmd) {
+      module.exports = skylarkjs;
+    } else {
+      globals.skylarkjs  = skylarkjs;
+    }
+  }
+
+})(function(define,require) {
+
+define('skylark-ajaxfy-routers/routers',[
+	"skylark-langx/skylark",
+	"skylark-langx/langx"	
+],function(skylark,langx){
+
+	return skylark.attach("ajaxfy.routers",{
+        createEvent : function (type,props) {
+            var e = new CustomEvent(type,props);
+            return langx.safeMixin(e, props);
+        }
+
+	});	
+});
+
+define('skylark-ajaxfy-routers/Route',[
+	"skylark-langx/langx",
+	"./routers"
+],function(langx,routers){
+    var createEvent = routers.createEvent;
+    
+    var Route = langx.Evented.inherit({
+        klassName: "Route",
+        init: function(name, setting) {
+            setting = langx.mixin({}, setting);
+            var pathto = setting.pathto || "",
+                pattern = pathto,
+                paramNames = pattern.match(/\:([a-zA-Z0-9_]+)/g);
+            if (paramNames !== null) {
+                paramNames = paramNames.map(function(paramName) {
+                    return paramName.substring(1);
+                });
+                pattern = pattern.replace(/\:([a-zA-Z0-9_]+)/g, '(.*?)');
+            } else {
+                paramNames = [];
+            }
+            if (pattern === "*") {
+                pattern = "(.*)";
+            } else {
+                pattern = pattern.replace("/", "\\/");
+            }
+
+            this._setting = setting;
+            this.name = name;
+            this.pathto = pathto;
+            this.paramNames = paramNames;
+            this.params = pattern;
+            this.regex = new RegExp("^" + pattern + "$", "");
+
+            var self = this;
+            ["entering", "entered", "exiting", "exited"].forEach(function(eventName) {
+                if (langx.isFunction(setting[eventName])) {
+                    self.on(eventName, setting[eventName]);
+                }
+            });
+        },
+
+        enter: function(ctx,query) {
+            if (query) {
+                var r = this._entering(ctx),
+                    self = this;
+
+                return langx.Deferred.when(r).then(function(){
+                    var e = createEvent("entering", {
+                        route: self,
+                        result: true
+                    });
+
+                    self.trigger(e);
+
+                    return e.result;
+                });
+            } else {
+                this._entered(ctx);
+
+                this.trigger(createEvent("entered", langx.safeMixin({
+                    route: this
+                }, ctx)));
+                return this;
+            }
+        },
+
+        exit: function(ctx, query) {
+            if (query) {
+                var ok = this._exiting(ctx);
+                if (!ok) {
+                    return false;
+                }
+
+                var e = createEvent("exiting", {
+                    route: this,
+                    result: true
+                });
+
+                this.trigger(e);
+
+                return e.result;
+            } else {
+                this._exited(ctx);
+                this.trigger(createEvent("exited", langx.safeMixin({
+                    route: this
+                }, ctx)));
+
+                return this;
+            }
+        },
+
+        match: function(path) {
+            var names = this.paramNames,
+                x = path.indexOf('?'),
+                path = ~x ? path.slice(0, x) : decodeURIComponent(path),
+                m = this.regex.exec(path);
+
+            if (!m) {
+                return false
+            };
+
+            var params = {};
+            for (var i = 1, len = m.length; i < len; ++i) {
+                var name = names[i - 1],
+                    val = decodeURIComponent(m[i]);
+                params[name] = val;
+            }
+
+            return params;
+        },
+
+        path: function(params) {
+            var path = this.pathto;
+            if (params) {
+                path = path.replace(/:([a-zA-Z0-9_]+)/g, function(match, paramName) {
+                    return params[paramName];
+                });
+            }
+            return path;
+        },
+
+        _entering: function(ctx) {
+            return true;
+        },
+        _entered: function(ctx) {
+            return true;
+        },
+        _exiting: function(ctx) {
+            return true;
+        },
+        _exited: function(ctx) {
+            return true;
+        },
+    });
+
+	return routers.Route = Route;	
+});
+define('skylark-ajaxfy-routers/Router',[
     "skylark-langx/langx",
     "./routers",
     "./Route"
@@ -304,3 +544,17 @@ define([
 
     return routers.Router = Router;
 });
+
+define('skylark-ajaxfy-routers/main',[
+    "./routers",
+    "./Router",
+    "./Route"
+], function(routers) {
+    return routers;
+});
+
+define('skylark-ajaxfy-routers', ['skylark-ajaxfy-routers/main'], function (main) { return main; });
+
+
+},this);
+//# sourceMappingURL=sourcemaps/skylark-ajaxfy-routers.js.map
