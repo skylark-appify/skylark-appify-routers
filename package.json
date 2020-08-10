@@ -1,16 +1,16 @@
 {
-  "name": "skylark-ajaxfy-routers",
-  "version": "0.9.6-beta",
+  "name": "skylark-ajaxify-routers",
+  "version": "0.9.6",
   "description": "An Elegant HTML5 Routing Framework.",
   "main": "-",
   "scripts": {
-    "build": "sbundle build .",
+    "build": "slib build .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "homepage": "www.skylarkjs.org",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skylark-ajaxfy/skylark-ajaxfy-routers.git"
+    "url": "git+https://github.com/skylark-ajaxify/skylark-ajaxify-routers.git"
   },
   "keywords": [
     "skylark",
@@ -22,12 +22,12 @@
   ],
   "author": "Hudaokeji Co.,Ltd",
   "license": "MIT",
-  "bugs": "https://github.com/skylark-ajaxfy/skylark-ajaxfy-routers/issues",
+  "bugs": "https://github.com/skylark-ajaxify/skylark-ajaxify-routers/issues",
   "dependencies": {
     "skylark-langx": "git+https://github.com/skylark-langx/skylark-langx.git#master"
   },
   "devDependencies": {
-    "skylark-utils-dom": "git+https://github.com/skylarkutils/skylark-utils-dom.git#master"
+    "skylark-domx": "git+https://github.com/skylark-domx/skylark-domx.git#master"
   },
   "engines": {
     "node": ">=0.8.0"

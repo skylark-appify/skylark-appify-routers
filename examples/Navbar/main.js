@@ -2,15 +2,15 @@ require.config({
   baseUrl: "./"
   ,paths : {
      "skylark-langx-all" : "../../node_modules/skylark-langx/dist/uncompressed/skylark-langx-all" ,
-     "skylark-utils-dom" : "../../node_modules/skylark-utils-dom/dist/uncompressed//skylark-utils-dom" ,
-     "skylark-ajaxfy-routers" : "../../dist/uncompressed/skylark-ajaxfy-routers" ,
+     "skylark-domx-all" : "../../node_modules/skylark-domx/dist/uncompressed//skylark-domx-all" ,
+     "skylark-ajaxify-routers" : "../../dist/uncompressed/skylark-ajaxify-routers" ,
   }
 });
 
-require(["skylark-langx-all"],function(){
-    require(["skylark-utils-dom"],function(domx){
+require(["skylark-domx-all"],function(){
+    require(["skylark-domx"],function(domx){
 
-        require(["skylark-ajaxfy-routers/Router"], function (Router) {
+        require(["skylark-ajaxify-routers/Router"], function (Router) {
             var router = new Router();
             var $ = domx.query;
             // Declare root route

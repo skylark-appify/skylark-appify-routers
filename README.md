@@ -1,4 +1,4 @@
-# skylark-ajaxfy-router
+# skylark-ajaxify-router
 An elaborate front-end routing framework.
 
 ## Features
@@ -15,55 +15,55 @@ An elaborate front-end routing framework.
 ##  Different builds
 |  | build | Description |
 |---------|--------|-------------|
-| full | skylark-ajaxfy-router-all.js | included skylark-langx |
-| only router | skylark-ajaxfy-router.js | not included skylark-langx |
-| full （development） | uncompressed/skylark-ajaxfy-router-all.js | included skylark-langx |
-| only router （development）| uncompressed/skylark-ajaxfy-router.js | not included skylark-langx |
+| full | skylark-ajaxify-router-all.js | included skylark-langx |
+| only router | skylark-ajaxify-router.js | not included skylark-langx |
+| full （development） | uncompressed/skylark-ajaxify-router-all.js | included skylark-langx |
+| only router （development）| uncompressed/skylark-ajaxify-router.js | not included skylark-langx |
 
 
 ## Installation
-There are multiple ways to install the skylark-ajaxfy-router library. 
+There are multiple ways to install the skylark-ajaxify-router library. 
 - cdn  
-http://registry.skylarkjs.org/packages/skylark-ajaxfy-router/v0.9.2/skylark-ajaxfy-router-all.js    or  
-http://registry.skylarkjs.org/packages/skylark-ajaxfy-router/v0.9.2/uncompressed/skylark-ajaxfy-router-all.js 
+http://registry.skylarkjs.org/packages/skylark-ajaxify-router/v0.9.2/skylark-ajaxify-router-all.js    or  
+http://registry.skylarkjs.org/packages/skylark-ajaxify-router/v0.9.2/uncompressed/skylark-ajaxify-router-all.js 
 - npm  
-npm install skylark-ajaxfy-router --save
+npm install skylark-ajaxify-router --save
 - bower  
-bower install skylark-ajaxfy-router
+bower install skylark-ajaxify-router
 
 ## Usage
 
 Refence router module object.
 ----------------------------
 
-- Using the skylark-ajaxfy-router library for a AMD module.  
+- Using the skylark-ajaxify-router library for a AMD module.  
 ```js
 require({
   'paths': {
      'skylark-langx': 'http://registry.skylarkjs.org/packages/skylark-langx/v0.9.1/skylark-langx',
-     'skylark-ajaxfy-router': 'http://registry.skylarkjs.org/packages/skylark-ajaxfy-router/v0.9.2/skylark-ajaxfy-router' 
+     'skylark-ajaxify-router': 'http://registry.skylarkjs.org/packages/skylark-ajaxify-router/v0.9.2/skylark-ajaxify-router' 
   }
-}, ['skylark-ajaxfy-router'], function(srouter) {
+}, ['skylark-ajaxify-router'], function(srouter) {
   // srouter.route(path,setting);
 });
 ```
 
-- Using the skylark-ajaxfy-router library for a global object named skylarkjs.  
+- Using the skylark-ajaxify-router library for a global object named skylarkjs.  
 ```js
-<script type="text/javascript" src="http://registry.skylarkjs.org/packages/skylark-ajaxfy-router/v0.9.2/skylark-ajaxfy-router-all.js"></script>
+<script type="text/javascript" src="http://registry.skylarkjs.org/packages/skylark-ajaxify-router/v0.9.2/skylark-ajaxify-router-all.js"></script>
 <script>
   // skylarkjs.router.route(path,setting);
 </script>
 ```
 
-- Using the skylark-ajaxfy-router library for a AMD package.  
+- Using the skylark-ajaxify-router library for a AMD package.  
 ```js
 require({
   'packages': [
     { 'name': 'skylark-langx', 'location': 'http://registry.skylarkjs.org/packages/skylark-langx/v0.9.1/skylark-langx/' },
-    { 'name': 'skylark-ajaxfy-router', 'location': 'http://registry.skylarkjs.org/packages/skylark-ajaxfy-router/v0.9.2/skylark-ajaxfy-router/' }
+    { 'name': 'skylark-ajaxify-router', 'location': 'http://registry.skylarkjs.org/packages/skylark-ajaxify-router/v0.9.2/skylark-ajaxify-router/' }
   ]
-}, ['skylark-ajaxfy-router/router'], function(srouter) {
+}, ['skylark-ajaxify-router/router'], function(srouter) {
   // srouter.route(path,setting);
 });
 ```
@@ -172,10 +172,10 @@ The internal management engine is used.
 ## Examples
 Please access the following site for the execution of each example program under the "/examples" directory.
 
-- http://examples.skylarkjs.org/skylark-ajaxfy-router/
+- http://examples.skylarkjs.org/skylark-ajaxify-router/
 
 
-## Building skylark-ajaxfy-router
+## Building skylark-ajaxify-router
 
 - Ensure that Node.js is installed.
 - Run npm gulp -g to ensure gulp is installed.
@@ -183,7 +183,7 @@ Please access the following site for the execution of each example program under
 - change current directory to build/, and run gulp. The builds will be placed in the dist/ directory.
 
 ## Integration
-This library is completely built-in on [skylark-spa](https://github.com/skylark-ajaxfy/skylark-ajaxfy-spa), and when you use [skylark-ajaxfy-spa](https://github.com/skylark-ajaxfy/skylark-ajaxfy-spa) or [skylark.js](https://github.com/skylarkjs/skylark) to develop an application, you do not have to use this library's API directly
+This library is completely built-in on [skylark-spa](https://github.com/skylark-ajaxify/skylark-ajaxify-spa), and when you use [skylark-ajaxify-spa](https://github.com/skylark-ajaxify/skylark-ajaxify-spa) or [skylark.js](https://github.com/skylarkjs/skylark) to develop an application, you do not have to use this library's API directly
 
 ## License
 

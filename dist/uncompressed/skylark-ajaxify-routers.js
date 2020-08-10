@@ -1,7 +1,7 @@
 /**
- * skylark-ajaxfy-routers - An Elegant HTML5 Routing Framework.
+ * skylark-ajaxify-routers - An Elegant HTML5 Routing Framework.
  * @author Hudaokeji Co.,Ltd
- * @version v0.9.6-beta
+ * @version v0.9.6
  * @link www.skylarkjs.org
  * @license MIT
  */
@@ -75,7 +75,7 @@
   factory(define,require);
 
   if (!isAmd) {
-    var skylarkjs = require("skylark-langx/skylark");
+    var skylarkjs = require("skylark-langx-ns");
 
     if (isCmd) {
       module.exports = skylarkjs;
@@ -86,12 +86,12 @@
 
 })(function(define,require) {
 
-define('skylark-ajaxfy-routers/routers',[
+define('skylark-ajaxify-routers/routers',[
 	"skylark-langx/skylark",
 	"skylark-langx/langx"	
 ],function(skylark,langx){
 
-	return skylark.attach("ajaxfy.routers",{
+	return skylark.attach("ajaxify.routers",{
         createEvent : function (type,props) {
             var e = new CustomEvent(type,props);
             return langx.safeMixin(e, props);
@@ -100,7 +100,7 @@ define('skylark-ajaxfy-routers/routers',[
 	});	
 });
 
-define('skylark-ajaxfy-routers/Route',[
+define('skylark-ajaxify-routers/Route',[
 	"skylark-langx/langx",
 	"./routers"
 ],function(langx,routers){
@@ -238,7 +238,7 @@ define('skylark-ajaxfy-routers/Route',[
 
 	return routers.Route = Route;	
 });
-define('skylark-ajaxfy-routers/Router',[
+define('skylark-ajaxify-routers/Router',[
     "skylark-langx/langx",
     "./routers",
     "./Route"
@@ -545,7 +545,7 @@ define('skylark-ajaxfy-routers/Router',[
     return routers.Router = Router;
 });
 
-define('skylark-ajaxfy-routers/main',[
+define('skylark-ajaxify-routers/main',[
     "./routers",
     "./Router",
     "./Route"
@@ -553,8 +553,8 @@ define('skylark-ajaxfy-routers/main',[
     return routers;
 });
 
-define('skylark-ajaxfy-routers', ['skylark-ajaxfy-routers/main'], function (main) { return main; });
+define('skylark-ajaxify-routers', ['skylark-ajaxify-routers/main'], function (main) { return main; });
 
 
 },this);
-//# sourceMappingURL=sourcemaps/skylark-ajaxfy-routers.js.map
+//# sourceMappingURL=sourcemaps/skylark-ajaxify-routers.js.map
