@@ -1,5 +1,5 @@
 /**
- * skylark-ajaxify-routers - An Elegant HTML5 Routing Framework.
+ * skylark-appify-routers - An Elegant HTML5 Routing Framework.
  * @author Hudaokeji Co.,Ltd
  * @version v0.9.6
  * @link www.skylarkjs.org
@@ -86,7 +86,7 @@
 
 })(function(define,require) {
 
-define('skylark-ajaxify-routers/routers',[
+define('skylark-appify-routers/routers',[
 	"skylark-langx/skylark",
 	"skylark-langx/langx"	
 ],function(skylark,langx){
@@ -100,7 +100,7 @@ define('skylark-ajaxify-routers/routers',[
 	});	
 });
 
-define('skylark-ajaxify-routers/Route',[
+define('skylark-appify-routers/Route',[
 	"skylark-langx/langx",
 	"./routers"
 ],function(langx,routers){
@@ -238,7 +238,7 @@ define('skylark-ajaxify-routers/Route',[
 
 	return routers.Route = Route;	
 });
-define('skylark-ajaxify-routers/Router',[
+define('skylark-appify-routers/Router',[
     "skylark-langx/langx",
     "./routers",
     "./Route"
@@ -545,7 +545,7 @@ define('skylark-ajaxify-routers/Router',[
     return routers.Router = Router;
 });
 
-define('skylark-ajaxify-routers/main',[
+define('skylark-appify-routers/main',[
     "./routers",
     "./Router",
     "./Route"
@@ -553,8 +553,8 @@ define('skylark-ajaxify-routers/main',[
     return routers;
 });
 
-define('skylark-ajaxify-routers', ['skylark-ajaxify-routers/main'], function (main) { return main; });
+define('skylark-appify-routers', ['skylark-appify-routers/main'], function (main) { return main; });
 
 
 },this);
-//# sourceMappingURL=sourcemaps/skylark-ajaxify-routers.js.map
+//# sourceMappingURL=sourcemaps/skylark-appify-routers.js.map

@@ -1,5 +1,5 @@
 /**
- * skylark-ajaxify-routers - An Elegant HTML5 Routing Framework.
+ * skylark-appify-routers - An Elegant HTML5 Routing Framework.
  * @author Hudaokeji Co.,Ltd
  * @version v0.9.6
  * @link www.skylarkjs.org
