@@ -3,14 +3,14 @@ require.config({
   ,paths : {
      "skylark-langx-all" : "../../node_modules/skylark-langx/dist/uncompressed/skylark-langx-all" ,
      "skylark-domx-all" : "../../node_modules/skylark-domx/dist/uncompressed//skylark-domx-all" ,
-     "skylark-ajaxify-routers" : "../../dist/uncompressed/skylark-ajaxify-routers" ,
+     "skylark-appify-routers" : "../../dist/uncompressed/skylark-appify-routers" ,
   }
 });
 
 require(["skylark-domx-all"],function(){
     require(["skylark-domx"],function(domx){
 
-        require(["skylark-ajaxify-routers/Router"], function (Router) {
+        require(["skylark-appify-routers/Router"], function (Router) {
             var router = new Router();
             var $ = domx.query;
             // Declare root route
