@@ -131,7 +131,7 @@ define([
         },
         _exited: function(ctx) {
             return true;
-        },
+        }
     });
 
 	return routers.Route = Route;	

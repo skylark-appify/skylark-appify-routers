@@ -233,7 +233,7 @@ define('skylark-appify-routers/route',[
         },
         _exited: function(ctx) {
             return true;
-        },
+        }
     });
 
 	return routers.Route = Route;	
