@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.js"],"names":["define","routers"],"mappings":";;;;;;;AAAAA,QACI,YACA,WACA,WACD,SAASC,GACR,OAAOA","file":"../main.js","sourcesContent":["define([\r\n    \"./routers\",\r\n    \"./router\",\r\n    \"./route\"\r\n], function(routers) {\r\n    return routers;\r\n});\r\n"]}
