@@ -5,5 +5,5 @@
  * @link www.skylarkjs.org
  * @license MIT
  */
-define(["./routers","./Router","./Route"],function(e){return e});
+define(["./routers","./router","./route"],function(r){return r});
 //# sourceMappingURL=sourcemaps/main.js.map

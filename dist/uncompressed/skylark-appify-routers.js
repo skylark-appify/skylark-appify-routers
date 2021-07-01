@@ -91,7 +91,7 @@ define('skylark-appify-routers/routers',[
 	"skylark-langx/langx"	
 ],function(skylark,langx){
 
-	return skylark.attach("ajaxify.routers",{
+	return skylark.attach("appify.routers",{
         createEvent : function (type,props) {
             var e = new CustomEvent(type,props);
             return langx.safeMixin(e, props);
@@ -100,7 +100,7 @@ define('skylark-appify-routers/routers',[
 	});	
 });
 
-define('skylark-appify-routers/Route',[
+define('skylark-appify-routers/route',[
 	"skylark-langx/langx",
 	"./routers"
 ],function(langx,routers){
@@ -238,10 +238,10 @@ define('skylark-appify-routers/Route',[
 
 	return routers.Route = Route;	
 });
-define('skylark-appify-routers/Router',[
+define('skylark-appify-routers/router',[
     "skylark-langx/langx",
     "./routers",
-    "./Route"
+    "./route"
 ],function(langx,routers,Route){
     var createEvent = routers.createEvent;
 
@@ -547,8 +547,8 @@ define('skylark-appify-routers/Router',[
 
 define('skylark-appify-routers/main',[
     "./routers",
-    "./Router",
-    "./Route"
+    "./router",
+    "./route"
 ], function(routers) {
     return routers;
 });

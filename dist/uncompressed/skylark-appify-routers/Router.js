@@ -1,7 +1,7 @@
 define([
     "skylark-langx/langx",
     "./routers",
-    "./Route"
+    "./route"
 ],function(langx,routers,Route){
     var createEvent = routers.createEvent;
 
