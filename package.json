@@ -24,10 +24,10 @@
   "license": "MIT",
   "bugs": "https://github.com/skylark-appify/skylark-appify-routers/issues",
   "dependencies": {
-    "skylark-langx": "git+https://github.com/skylark-langx/skylark-langx.git#master"
+    "skylark-langx": "git+https://github.com/skylark-langx/skylark-langx.git"
   },
   "devDependencies": {
-    "skylark-domx": "git+https://github.com/skylark-domx/skylark-domx.git#master"
+    "skylark-domx": "git+https://github.com/skylark-domx/skylark-domx.git"
   },
   "engines": {
     "node": ">=0.8.0"
